@@ -14,7 +14,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='main-title'>🚛 FMCSA Carrier Acquisition & Live Calling Matrix</div>", unsafe_allow_html=True)
-st.write("Monday سے کالز شروع کرنے کے لیے نیچے دیے گئے 4 مختلف موڈز میں سے کسی بھی ایک کو کیریئر کے مزاج کے مطابق منتخب کریں۔")
+st.write("Monday سے کالز شروع کرنے کے لیے نیچے دیے گئے 5 مختلف موڈز میں سے کسی بھی ایک کو کیریئر کے مزاج کے مطابق منتخب کریں۔")
 
 # ----------------------------------------------------------------------------------
 # SIDEBAR NAVIGATION
@@ -26,7 +26,8 @@ current_mode = st.sidebar.radio(
         "Mode 1: The Analytical Systems Pitch (ڈیٹا اور ریاضی کا طریقہ)",
         "Mode 2: The Aggressive Hot-Lane Pitch (ہائی ریٹ لین کا طریقہ)",
         "Mode 3: The 2-Load Risk-Free Trial (فری ٹرائل کا طریقہ)",
-        "Mode 4: Full Back-Office Relief Pitch (کمپنی مینجمنٹ کا طریقہ)"
+        "Mode 4: Full Back-Office Relief Pitch (کمپنی مینجمنٹ کا طریقہ)",
+        "Mode 5: The Conversational Partnership Pitch (سادہ اور مخلص طریقہ)"
     ]
 )
 
@@ -45,7 +46,7 @@ if "Mode 1" in current_mode:
     
     st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
     st.markdown("""<div class='dialogue-text'>
-    "Most dispatchers just guess and look at public load boards after prices drop. We don't guess—we run predictive market math. We locate high-paying micro-lanes and match them with your equipment before the market gets flooded. We handle your entire logistics pipeline, optimize your fuel-to-rate ratio, and keep your fleet moving smoothly. You drive, we maximize the yield."
+    "Most dispatchers just guess and look at public load boards after prices drop. We don't guess—we run predictive market math. We locate high-paying micro-lanes and match them with your equipment before the market gets flooded. We handle your entire logistics pipeline, optimize your cost-per-mile efficiency, and keep your fleet moving smoothly. You drive, we maximize the yield."
     </div>""", unsafe_allow_html=True)
 
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
@@ -123,6 +124,30 @@ elif "Mode 4" in current_mode:
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
     st.markdown("""<div class='dialogue-text'>
     "Let us take the administrative weight off your shoulders this week. Let’s get your profile set up in our dispatch system today. Can you share your MC number with me to initiate the paperwork?"
+    </div>""", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ----------------------------------------------------------------------------------
+# MODE 5: THE CONVERSATIONAL PARTNERSHIP PITCH (NEW SIMPLE MODE)
+# ----------------------------------------------------------------------------------
+elif "Mode 5" in current_mode:
+    st.header("🤝 Mode 5: The Conversational Partnership Pitch")
+    st.markdown("<p class='urdu-tip'>💡 یہ کب استعمال کریں: یہ ایک بالکل سادہ، پروفیشنل اور مخلصانہ طریقہ ہے۔ جب آپ کیریئر پر کوئی دباؤ ڈالے بغیر براہِ راست پارٹنرشپ کی بات کرنا چاہیں۔</p>", unsafe_allow_html=True)
+    
+    st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
+    st.subheader("1️⃣ Intro Hook (پہلے 15 سیکنڈ):")
+    st.markdown("""<div class='dialogue-text'>
+    "Hi [Carrier Name], my name is Ahsan from System Intelligence Framework. I'll keep it short: I’m a professional truck dispatcher, and I’m currently looking to partner with a few reliable carriers under their own authority to help them book high-paying loads."
+    </div>""", unsafe_allow_html=True)
+    
+    st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
+    st.markdown("""<div class='dialogue-text'>
+    "I know the market is tough right now, so we handle all the heavy lifting—like tracking premium micro-lanes, negotiating with brokers, and managing setup packets—so you can just focus on driving without the stress of public load boards."
+    </div>""", unsafe_allow_html=True)
+
+    st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
+    st.markdown("""<div class='dialogue-text'>
+    "I'm not asking for any upfront commitments. I just wanted to see if you are currently looking for a dedicated dispatcher, or if you're open to seeing how we can maximize your weekly revenue starting Monday?"
     </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
