@@ -1,20 +1,19 @@
 import streamlit as st
 
-# Page Configuration
+# 1. Page Configuration
 st.set_page_config(page_title="Carrier Acquisition Pipeline", page_icon="📞", layout="wide")
 
-# Styling for better readability
+# 2. Styling for better readability
 st.markdown("""
     <style>
     .main-title { font-size:32px !important; font-weight: bold; color: #1E3A8A; text-align: center; }
     .mode-box { background-color: #F3F4F6; padding: 20px; border-radius: 10px; border-left: 5px solid #2563EB; margin-bottom: 20px; }
-    .dialogue-text { font-size: 18px !important; font-style: italic; color: #111827; background-color: #FFFFFF; padding: 15px; border-radius: 5px; border: 1px solid #D1D5DB; }
     .urdu-tip { font-size: 16px !important; color: #047857; font-weight: bold; }
     </style>
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='main-title'>🚛 FMCSA Carrier Acquisition & Live Calling Matrix</div>", unsafe_allow_html=True)
-st.write("Monday سے کالز شروع کرنے کے لیے نیچے دیے گئے 5 مختلف موڈز میں سے کسی بھی ایک کو کیریئر کے مزاج کے مطابق منتخب کریں۔")
+st.write("Monday से कॉल्स शुरू करने के लिए नीचे दिए गए 5 विभिन्न मोडज़ में से किसी भी एक को कीरियर के मिजाज के मुताबिक चुनें।")
 
 # ----------------------------------------------------------------------------------
 # SIDEBAR NAVIGATION
@@ -26,7 +25,7 @@ current_mode = st.sidebar.radio(
         "Mode 1: The Analytical Systems Pitch (ڈیٹا اور ریاضی کا طریقہ)",
         "Mode 2: The Aggressive Hot-Lane Pitch (ہائی ریٹ لین کا طریقہ)",
         "Mode 3: The 2-Load Risk-Free Trial (فری ٹرائل کا طریقہ)",
-        "Mode 4: Full Back-Office Relief Pitch (کمپنی مینجمنٹ کا طریقہ)",
+        "Mode 4: Full Back-Office Relief Pitch (کمپنی مینجمنٹ का तरीका)",
         "Mode 5: Simple & Direct Partnership Pitch (سادہ اور مخلص طریقہ)"
     ]
 )
@@ -36,17 +35,17 @@ current_mode = st.sidebar.radio(
 # ----------------------------------------------------------------------------------
 if "Mode 1" in current_mode:
     st.header("🧠 Mode 1: The Analytical Systems Pitch")
-    st.markdown("<p class='urdu-tip'>💡 یہ کب استعمال کریں: جب آپ کسی ایسے کیریئر سے بات کر رہے ہوں جو مارکیٹ کے حالات سے تنگ آ چکا ہو اور سنجیدہ بات سننا چاہتا ہو۔</p>", unsafe_allow_html=True)
+    st.markdown("<p class='urdu-tip'>💡 یہ کب استعمال کریں: جب آپ کسی ایسے کیریئر سے بات کر رہے ہوں جو مارکیट کے حالات سے تنگ آ چکا ہو اور سنجیدہ بات سننا چاہتا ہو۔</p>", unsafe_allow_html=True)
     
     st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
     st.subheader("1️⃣ Intro Hook (پہلے 15 سیکنڈ):")
-    st.code('"Hi [Carrier Name], my name is Ahsan. I’m the Lead Systems Architect at System Intelligence Framework. Look, I\'m not a regular broker or a standard dispatcher calling to waste your time. We run a mathematical routing framework that maps real-time capacity deficits in your lane. Right now, our data shows your trucks running out of [State] are leaving up to 15% revenue on the table. Do you have exactly 45 seconds to let me explain how we fix that?"', language="text")
+    st.code(""""Hi [Carrier Name], my name is Ahsan. I’m the Lead Systems Architect at System Intelligence Framework. Look, I'm not a regular broker or a standard dispatcher calling to waste your time. We run a mathematical routing framework that maps real-time capacity deficits in your lane. Right now, our data shows your trucks running out of [State] are leaving up to 15% revenue on the table. Do you have exactly 45 seconds to let me explain how we fix that?"""", language="text")
     
     st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
-    st.code('"Most dispatchers just guess and look at public load boards after prices drop. We don\'t guess—we run predictive market math. We locate high-paying micro-lanes and match them with your equipment before the market gets flooded. We handle your entire logistics pipeline, optimize your cost-per-mile efficiency, and keep your fleet moving smoothly. You drive, we maximize the yield."', language="text")
+    st.code(""""Most dispatchers just guess and look at public load boards after prices drop. We don't guess—we run predictive market math. We locate high-paying micro-lanes and match them with your equipment before the market gets flooded. We handle your entire logistics pipeline, optimize your cost-per-mile efficiency, and keep your fleet moving smoothly. You drive, we maximize the yield."""", language="text")
 
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
-    st.code('"I want to dispatch your first truck on Monday to show you the numbers. What kind of equipment do you have ready, and what is your minimum rate per mile requirement?"', language="text")
+    st.code(""""I want to dispatch your first truck on Monday to show you the numbers. What kind of equipment do you have ready, and what is your minimum rate per mile requirement?"""", language="text")
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------------
@@ -58,13 +57,13 @@ elif "Mode 2" in current_mode:
     
     st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
     st.subheader("1️⃣ Intro Hook (پہلے 15 سیکنڈ):")
-    st.code('"Hey [Carrier Name], this is Ahsan with System Intelligence Framework. I\'m calling because our routing engine just triggered a capacity alert for your area. Brokers are struggling to move freight in your lanes right now, which means we have leverage to demand premium rates. I need a reliable carrier under their own authority to plug into this lane immediately. Are you currently loaded or looking for a high-paying run?"', language="text")
+    st.code(""""Hey [Carrier Name], this is Ahsan with System Intelligence Framework. I'm calling because our routing engine just triggered a capacity alert for your area. Brokers are struggling to move freight in your lanes right now, which means we have leverage to demand premium rates. I need a reliable carrier under their own authority to plug into this lane immediately. Are you currently loaded or looking for a high-paying run?"""", language="text")
     
     st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
-    st.code('"We specialize in finding pricing arbitrage. Right now, standard load boards are paying garbage, but our private broker network and data algorithms isolate contract loads that need immediate coverage. As your dedicated dispatcher, we don\'t just book a load; we chain your back-haul together so your truck never runs empty or deadheads for pennies."', language="text")
+    st.code(""""We specialize in finding pricing arbitrage. Right now, standard load boards are paying garbage, but our private broker network and data algorithms isolate contract loads that need immediate coverage. As your dedicated dispatcher, we don't just book a load; we chain your back-haul together so your truck never runs empty or deadheads for pennies."""", language="text")
 
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
-    st.code('"Let’s get your truck locked into this high-yield lane before another fleet takes it. What is your MC number so I can check your setup status?"', language="text")
+    st.code(""""Let’s get your truck locked into this high-yield lane before another fleet takes it. What is your MC number so I can check your setup status?"""", language="text")
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------------
@@ -76,13 +75,13 @@ elif "Mode 3" in current_mode:
     
     st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
     st.subheader("1️⃣ Intro Hook (پہلے 15 سیکنڈ):")
-    st.code('"I completely understand you book your own loads / have a dispatcher. Honestly, if I were you, I wouldn’t trust a stranger over the phone either. That’s exactly why I’m not asking you to sign anything or switch to me. I want to offer you a 2-Load Risk-Free Test Run. No contracts, no commitments, and zero upfront fees. If my routing engine can\'t beat your current rates, you walk away and don\'t owe me a dime. Fair enough?"', language="text")
+    st.code(""""I completely understand you book your own loads / have a dispatcher. Honestly, if I were you, I wouldn’t trust a stranger over the phone either. That’s exactly why I’m not asking you to sign anything or switch to me. I want to offer you a 2-Load Risk-Free Test Run. No contracts, no commitments, and zero upfront fees. If my routing engine can't beat your current rates, you walk away and don't owe me a dime. Fair enough?"""", language="text")
     
     st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
-    st.code('"Think of us as your backup intelligence team. You keep doing what you are doing, but let me run your equipment through our framework for just two loads. We will handle the heavy negotiation with brokers, set up the detention tracking, and make sure you get premium access. If we perform, we talk about a long-term dispatch partnership. If we don’t, you keep 100% of the profit from those two loads and we part ways as friends."', language="text")
+    st.code(""""Think of us as your backup intelligence team. You keep doing what you are doing, but let me run your equipment through our framework for just two loads. We will handle the heavy negotiation with brokers, set up the detention tracking, and make sure you get premium access. If we perform, we talk about a long-term dispatch partnership. If we don’t, you keep 100% of the profit from those two loads and we part ways as friends."""", language="text")
 
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
-    st.code('"There is absolutely no downside for your business. I\'ll send a secure onboarding link from contact@sysintelofficial.com. What\'s the best email to send that over so we can activate your trial for Monday?"', language="text")
+    st.code(""""There is absolutely no downside for your business. I'll send a secure onboarding link from contact@sysintelofficial.com. What's the best email to send that over so we can activate your trial for Monday?"""", language="text")
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------------
@@ -94,25 +93,25 @@ elif "Mode 4" in current_mode:
     
     st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
     st.subheader("1️⃣ Intro Hook (پہلے 15 سیکنڈ):")
-    st.code('"Hi [Carrier Name], this is Ahsan from System Intelligence Framework. I see you are running an independent operation, and honestly, driving 11 hours a day while trying to fight with brokers, handle invoicing, and manage compliance is a nightmare. I’m calling to let you know that you don\'t have to do it alone anymore. We act as your complete back-office dispatch partner so you can just focus on the road safely."', language="text")
+    st.code(""""Hi [Carrier Name], this is Ahsan from System Intelligence Framework. I see you are running an independent operation, and honestly, driving 11 hours a day while trying to fight with brokers, handle invoicing, and manage compliance is a nightmare. I’m calling to let you know that you don't have to do it alone anymore. We act as your complete back-office dispatch partner so you can just focus on the road safely."""", language="text")
     
     st.subheader("2️⃣ The Value Pitch (اصل بات چیت):")
-    st.code('"When you partner with us, we take over everything. We set up your packets with top-tier brokers, handle the factoring invoicing instantly so you get paid within 24 hours, track layovers, and fight for your detention pay down to the last dollar. We use advanced route optimization to schedule your weekly runs seamlessly, ensuring you get back home to your family on time without sacrificing your profit margins."', language="text")
+    st.code(""""When you partner with us, we take over everything. We set up your packets with top-tier brokers, handle the factoring invoicing instantly so you get paid within 24 hours, track layovers, and fight for your detention pay down to the last dollar. We use advanced route optimization to schedule your weekly runs seamlessly, ensuring you get back home to your family on time without sacrificing your profit margins."""", language="text")
 
     st.subheader("3️⃣ The Close (ڈیل فائنل کرنا):")
-    st.code('"Let us take the administrative weight off your shoulders this week. Let’s get your profile set up in our dispatch system today. Can you share your MC number with me to initiate the paperwork?"', language="text")
+    st.code(""""Let us take the administrative weight off your shoulders this week. Let’s get your profile set up in our dispatch system today. Can you share your MC number with me to initiate the paperwork?"""", language="text")
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------------
-# MODE 5: SIMPLE & DIRECT PARTNERSHIP PITCH (NEW 🚀)
+# MODE 5: SIMPLE & DIRECT PARTNERSHIP PITCH
 # ----------------------------------------------------------------------------------
 elif "Mode 5" in current_mode:
     st.header("🤝 Mode 5: Simple & Direct Partnership Pitch")
-    st.markdown("<p class='urdu-tip'>💡 یہ کب استعمال کریں: جب آپ بالکل سادہ، مخلص اور کاروباری انداز میں کیریئر کو پارٹنرشپ کی پیشکش کرنا چاہتے ہوں۔ بغیر کسی گھماؤ پھراؤ کے۔</p>", unsafe_allow_html=True)
+    st.markdown("<p class='urdu-tip'>💡 یہ کب استعمال کریں: جب آپ بالکل سادہ، مخلص اور کاروباری انداز میں کیریئر کو پارٹनरشپ کی پیشکش کرنا چاہتے ہوں۔ بغیر کسی گھماؤ پھراؤ کے۔</p>", unsafe_allow_html=True)
     
     st.markdown("<div class='mode-box'>", unsafe_allow_html=True)
     st.subheader("🗣️ Complete Calling Script:")
-    st.code('"Hi [Carrier Name], my name is Ahsan from System Intelligence Framework. I\'ll keep it short: I’m a professional truck dispatcher, and I’m currently looking to partner with a few reliable carriers under their own authority to help them book high-paying loads. I know the market is tough right now, so we handle all the heavy lifting—like booking premium loads, negotiating with brokers, and managing paperwork—so you can just focus on driving. Are you currently looking for a dedicated dispatcher, or are you open to seeing how we can increase your weekly revenue?"', language="text")
+    st.code(""""Hi [Carrier Name], my name is Ahsan from System Intelligence Framework. I'll keep it short: I’m a professional truck dispatcher, and I’m currently looking to partner with a few reliable carriers under their own authority to help them book high-paying loads. I know the market is tough right now, so we handle all the heavy lifting—like booking premium loads, negotiating with brokers, and managing paperwork—so you can just focus on driving. Are you currently looking for a dedicated dispatcher, or are you open to seeing how we can increase your weekly revenue?"""", language="text")
     
     st.markdown("---")
     st.subheader("⚙️ Background Checklist (کال سے پہلے یہ تیار رکھیں):")
@@ -120,7 +119,6 @@ elif "Mode 5" in current_mode:
     st.write("2. **Authority Check:** ان کا MC یا DOT نمبر فائنل رکھیں تاکہ ان کی ہسٹری معلوم ہو۔")
     st.write("3. **Ready to Action:** جیسے ہی وہ 'ہاں' کہیں، اپنا آن بورڈنگ ای میل یا فارم بھیجنے کے لیے تیار رہیں۔")
     st.markdown("</div>", unsafe_allow_html=True)
-
 
 # ----------------------------------------------------------------------------------
 # LIVE COUNTER-ATTACK/OBJECTION HANDLING (QUICK REFERENCE)
