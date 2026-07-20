@@ -11,6 +11,7 @@ st.markdown("""
     .chat-box { padding: 25px; border-radius: 15px; font-size: 24px !important; line-height: 1.8; margin-bottom: 20px; }
     .you-box { background-color: #e3f2fd; color: #0d47a1; border-left: 10px solid #1976d2; }
     .carrier-box { background-color: #ffebee; color: #b71c1c; border-left: 10px solid #d32f2f; }
+    .emergency-box { background-color: #fff3e0; color: #e65100; border-left: 10px solid #ef6c00; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -71,7 +72,7 @@ deep_engagement_scenarios = {
     }
 }
 
-# 1. Opening Line (Updated with "loads" instead of "freight support")
+# 1. Opening Line
 st.subheader("Start with this:")
 st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks looking for loads today?</div>', unsafe_allow_html=True)
 
@@ -80,7 +81,6 @@ st.markdown("---")
 st.subheader("⚡ Quick Responses (Busy or Short Answers)")
 choice = st.selectbox("Select the common scenario:", [""] + list(scenarios.keys()))
 
-# Dynamic Response for Quick Scenarios
 if choice:
     response_text = scenarios[choice]["reply"]
     st.markdown(f'<div class="chat-box carrier-box"><b>Carrier says:</b> {choice}</div>', unsafe_allow_html=True)
@@ -91,12 +91,11 @@ if choice:
             audio_bytes = asyncio.run(generate_male_audio(response_text))
             st.audio(audio_bytes, format='audio/mp3')
 
-# 3. Dropdown for Deep Engagement (When Carrier wants to talk)
+# 3. Dropdown for Deep Engagement
 st.markdown("---")
 st.subheader("🤝 Deep Engagement (Detailed questions)")
 deep_choice = st.selectbox("Select the detailed question:", [""] + list(deep_engagement_scenarios.keys()))
 
-# Dynamic Response for Deep Engagement
 if deep_choice:
     deep_response_text = deep_engagement_scenarios[deep_choice]["reply"]
     st.markdown(f'<div class="chat-box carrier-box"><b>Carrier asks:</b> {deep_choice}</div>', unsafe_allow_html=True)
@@ -106,3 +105,14 @@ if deep_choice:
         with st.spinner("Generating audio..."):
             audio_bytes = asyncio.run(generate_male_audio(deep_response_text))
             st.audio(audio_bytes, format='audio/mp3')
+
+# 4. EMERGENCY ROUTE (If you don't know the answer)
+st.markdown("---")
+st.subheader("🚨 Emergency (If they ask something you don't know)")
+emergency_text = "Good question. Let me check my system. I will put the exact details in the email I am sending you right now."
+st.markdown(f'<div class="chat-box emergency-box"><b>Your Escape Reply:</b> {emergency_text}</div>', unsafe_allow_html=True)
+
+if st.button("Listen to Emergency Response"):
+    with st.spinner("Generating audio..."):
+        audio_bytes = asyncio.run(generate_male_audio(emergency_text))
+        st.audio(audio_bytes, format='audio/mp3')
