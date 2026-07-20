@@ -31,19 +31,19 @@ async def generate_male_audio(text):
 # --- QUICK RESPONSES (Short & Punchy) ---
 scenarios = {
     "I am driving / I am busy": {
-        "reply": "I understand. Stay safe. I have well-paying private lanes. May I email my info as a backup?"
+        "reply": "I understand. Stay safe. I am an independent dispatcher with access to good lanes. May I email my info as a backup?"
     },
     "What is this about?": {
-        "reply": "I work with private lanes that pay above average. I want to be a backup for you. May I email my details?"
+        "reply": "I am an independent dispatcher helping carriers find high-paying routes. I want to be a backup for you. May I email my details?"
     },
     "We do not need help right now": {
         "reply": "No problem at all. I just want to be an option in your back pocket. May I email my info?"
     },
-    "We have our own brokers": {
-        "reply": "That is great. I am just reaching out to be an alternative option. May I send a quick email?"
+    "We have our own brokers/dispatchers": {
+        "reply": "That is great. I am just reaching out to be an alternative option if you ever need one. May I send a quick email?"
     },
     "Who are you?": {
-        "reply": "I am Ahsan, an independent logistics partner. I have specific lanes that pay well. May I email you my details?"
+        "reply": "I am Ahsan, an independent logistics partner and dispatcher. May I email you my details so you have them on file?"
     },
     "Just send me an email": {
         "reply": "Perfect. I will send it right now. Thank you for your time."
@@ -51,41 +51,41 @@ scenarios = {
     "How did you get my number?": {
         "reply": "From the public FMCSA registry. You have a strong safety record, so I reached out."
     },
-    "What kind of freight do you have?": {
-        "reply": "Mostly dry van and reefer on regional routes. May I email you our active list?"
+    "What kind of freight do you work with?": {
+        "reply": "Mostly dry van and reefer on regional routes. May I email you the details of how I optimize lanes?"
     },
     "We are covered for the week": {
         "reply": "Excellent. I will just email my contact details so you have a backup for next week."
-    },
-    "What are your rates like?": {
-        "reply": "We pay above market average to keep good trucks moving. May I email you some examples?"
     }
 }
 
 # --- DEEP ENGAGEMENT (Handling Hard Questions) ---
 deep_engagement_scenarios = {
     "How do you increase profit?": {
-        "reply": "I optimize lane routing to reduce empty miles. It is hard to explain the math on the phone, so I have sent the data in an email. Please check it and let me know if it works for you."
+        "reply": "I optimize lane routing to reduce empty miles and calculate true rate-per-mile. It is hard to explain the math on the phone, so I have sent the data in an email. Please check it."
     },
-    "Why work with you instead of a big broker?": {
-        "reply": "Big brokers keep large margins. I operate independently, so my margins are low, and more money goes to your truck."
+    "Why work with you?": {
+        "reply": "I operate independently as your dispatcher. My goal is to negotiate the highest rates for your truck using analytics, instead of taking large broker margins."
     },
-    "How do you pay your carriers?": {
-        "reply": "Standard pay is thirty days, but we offer quick pay too. Cash flow is important. I will email the details."
-    },
-    "How does your onboarding work?": {
-        "reply": "Very simple. I send a secure link, you upload your documents, and we are ready to go."
+    "How does your process work?": {
+        "reply": "Very simple. I work directly through your established load board accounts via a dispatcher login. I do the heavy lifting and finding, while you focus on driving."
     }
 }
 
-# 1. Opening Line
-st.subheader("1️⃣ Start with this:")
-st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks looking for loads today?</div>', unsafe_allow_html=True)
+# 1. NEW HONEST OPENING LINE
+st.subheader("1️⃣ Start with this (Honest Dispatcher Approach):")
+opening_text = "Hi, this is Ahsan. I am an independent dispatcher. I am reaching out to see if you need help finding high-paying loads for your trucks this week?"
+st.markdown(f'<div class="chat-box you-box"><b>You:</b> {opening_text}</div>', unsafe_allow_html=True)
+
+if st.button("Listen to Opening Line"):
+    with st.spinner("Generating audio..."):
+        audio_bytes = asyncio.run(generate_male_audio(opening_text))
+        st.audio(audio_bytes, format='audio/mp3')
 
 # 2. VOICEMAIL (If they don't pick up)
 st.markdown("---")
 st.subheader("2️⃣ 📩 If call goes to Voicemail / Auto-Attendant")
-voicemail_text = "Hi, this is Ahsan. I am reaching out with some profitable lanes for your trucks. I know you are busy, so I am sending over my details via email. Please check your inbox. Let's connect soon."
+voicemail_text = "Hi, this is Ahsan. I am an independent dispatcher reaching out to help optimize your lanes. I know you are busy, so I am sending over my details via email. Please check your inbox. Let's connect soon."
 st.markdown(f'<div class="chat-box voicemail-box"><b>Leave this message:</b><br>{voicemail_text}</div>', unsafe_allow_html=True)
 
 if st.button("Listen to Voicemail Script"):
@@ -123,10 +123,10 @@ if deep_choice:
             audio_bytes = asyncio.run(generate_male_audio(deep_response_text))
             st.audio(audio_bytes, format='audio/mp3')
 
-# 5. NEW: POLITE INTERRUPTION (For Long Talkers)
+# 5. POLITE INTERRUPTION (For Long Talkers)
 st.markdown("---")
 st.subheader("5️⃣ ✋ Polite Interruption (If they talk too much about tech/math)")
-interrupt_text = "I would love to walk you through the analytics, but I know you have trucks to run and I do not want to hold you up. Let me email you the numbers and lanes. Once you see the data, we can jump on a quick call to discuss the details."
+interrupt_text = "I would love to walk you through the analytics, but I know you have trucks to run and I do not want to hold you up. Let me email you the details. Once you see the data, we can jump on a quick call."
 st.markdown(f'<div class="chat-box interrupt-box"><b>Your Reply to cut it short:</b><br>{interrupt_text}</div>', unsafe_allow_html=True)
 
 if st.button("Listen to Polite Interruption"):
