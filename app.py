@@ -3,7 +3,7 @@ import asyncio
 import edge_tts
 
 # 1. Page Setup
-st.set_page_config(page_title="Carrier Pitch Trainer", layout="wide")
+st.set_page_config(page_title="Smart Carrier Trainer", layout="wide")
 
 # 2. Custom CSS
 st.markdown("""
@@ -14,8 +14,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📞 Updated Professional Cold Call Script")
+st.title("📞 Smart Carrier Pitch Trainer")
 
+# Async function for Audio
 async def generate_male_audio(text):
     communicate = edge_tts.Communicate(text, "en-US-GuyNeural")
     audio_data = bytearray()
@@ -24,24 +25,41 @@ async def generate_male_audio(text):
             audio_data.extend(chunk["data"])
     return bytes(audio_data)
 
-# Updated Dialogue Script
-dialogue = [
-    {"role": "You", "text": "Hi, this is Ahsan. I’m reaching out to see if you have any open trucks that need freight support today?"},
-    {"role": "Carrier", "text": "We're actually pretty busy right now, but thanks for the call."},
-    {"role": "You", "text": "I completely understand! I work with private lanes in your area that pay above average. Should I send my info so you have me as a backup for when things slow down?"},
-    {"role": "Carrier", "text": "Sure, send it over, I'll take a look."},
-    {"role": "You", "text": "Perfect, I'll email that right now. Have a great day and stay safe out there!"}
-]
+# --- THE LOGIC ---
+# Define the scenarios
+scenarios = {
+    "I'm busy / driving right now": {
+        "reply": "I completely understand. I’ll keep it brief—I work with private lanes in your area that pay above average. Can I just email my info so you have me as a backup for when you're free?"
+    },
+    "What is this about?": {
+        "reply": "I work with private lanes that pay above average. I'm just reaching out to see if I can be a backup contact for you when your usual lanes are slow. Should I send my info over?"
+    },
+    "We don't need help right now": {
+        "reply": "No problem at all, I totally get it. I'm just trying to build my contact list for the future. May I send you a quick email so you have my info for a rainy day?"
+    },
+    "Just send me an email": {
+        "reply": "Perfect, I'll send that right now! Have a great day and stay safe out there!"
+    }
+}
 
-# Display Loop
-for line in dialogue:
-    col1, col2 = st.columns([0.85, 0.15])
-    with col1:
-        box_class = "you-box" if line['role'] == "You" else "carrier-box"
-        st.markdown(f'<div class="chat-box {box_class}"><b>{line["role"]}:</b> {line["text"]}</div>', unsafe_allow_html=True)
+# 1. Opening Line
+st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I’m reaching out to see if you have any open trucks that need freight support today?</div>', unsafe_allow_html=True)
+
+# 2. Dropdown for Carrier Response
+choice = st.selectbox("Select how the Carrier responds:", list(scenarios.keys()))
+
+# 3. Dynamic Response based on choice
+if choice:
+    response_text = scenarios[choice]["reply"]
     
-    with col2:
-        if line['role'] == "You":
-            audio_bytes = asyncio.run(generate_male_audio(line['text']))
-            st.write("<br>", unsafe_allow_html=True) 
+    # Display Carrier's simulated choice
+    st.markdown(f'<div class="chat-box carrier-box"><b>Carrier:</b> {choice}</div>', unsafe_allow_html=True)
+    
+    # Display your response
+    st.markdown(f'<div class="chat-box you-box"><b>Your Reply:</b> {response_text}</div>', unsafe_allow_html=True)
+    
+    # Generate and Play Audio
+    if st.button("Listen to your reply"):
+        with st.spinner("Generating audio..."):
+            audio_bytes = asyncio.run(generate_male_audio(response_text))
             st.audio(audio_bytes, format='audio/mp3')
