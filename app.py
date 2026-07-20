@@ -2,11 +2,27 @@ import streamlit as st
 from gtts import gTTS
 import io
 
-# Page setup for a compact look
-st.set_page_config(page_title="Dispatcher Pro", layout="centered")
+# Page setup - "wide" layout to spread across the full screen
+st.set_page_config(page_title="Dispatcher Pro", layout="wide")
 
-st.title("📞 Dispatcher Trainer")
-st.write("Click the player button to listen to the line, then practice!")
+st.markdown("""
+    <style>
+    /* Font size increase for better readability */
+    .chat-box { 
+        padding: 20px; 
+        border-radius: 12px; 
+        font-size: 22px !important; 
+        line-height: 1.6;
+        margin-bottom: 15px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .you-box { background-color: #e3f2fd; color: #0d47a1; }
+    .carrier-box { background-color: #ffebee; color: #b71c1c; }
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("📞 Professional Dispatcher Trainer")
+st.subheader("Practice your flow with larger, clearer text")
 
 dialogue = [
     {"role": "You", "text": "Hi [Name], this is Ahsan. Are you looking for extra freight support?"},
@@ -16,14 +32,14 @@ dialogue = [
     {"role": "You", "text": "Perfect, I'll email that now. I'll follow up in a few days. Thanks!"}
 ]
 
-for i, line in enumerate(dialogue):
-    # Create columns: 80% for text, 20% for audio player
-    col1, col2 = st.columns([0.8, 0.2])
+for line in dialogue:
+    # Creating a wide layout with columns
+    col1, col2 = st.columns([0.85, 0.15])
     
     with col1:
-        color = "#e1f5fe" if line['role'] == "You" else "#ffebee"
+        box_class = "you-box" if line['role'] == "You" else "carrier-box"
         st.markdown(f"""
-            <div style="background-color: {color}; padding: 10px; border-radius: 8px; font-size: 14px;">
+            <div class="chat-box {box_class}">
                 <b>{line['role']}:</b> {line['text']}
             </div>
         """, unsafe_allow_html=True)
@@ -37,6 +53,4 @@ for i, line in enumerate(dialogue):
             audio_buffer.seek(0)
             st.audio(audio_buffer, format='audio/mp3')
         else:
-            st.write("") # Empty space for Carrier side
-
-    st.write("") # Small gap between lines
+            st.write("")
