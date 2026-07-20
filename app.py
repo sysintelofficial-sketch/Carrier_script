@@ -1,47 +1,49 @@
 import streamlit as st
 
-# Page Config
+# Page Configuration
 st.set_page_config(page_title="Dispatch Pro", layout="centered")
 
+# Custom Styling
 st.markdown("""
     <style>
-    .script-box { background-color: #f0f2f6; padding: 20px; border-radius: 10px; font-size: 18px; border-left: 5px solid #0047AB; }
+    .script-box { background-color: #ffffff; padding: 20px; border-radius: 10px; 
+                  border: 2px solid #1E40AF; font-size: 18px; color: #1E293B; }
+    .header-text { color: #1E40AF; font-weight: bold; }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📞 Fast-Track Dispatcher Script")
+st.title("🚛 Dispatcher Quick-Pitch")
 
-# Step-by-Step UI
-step = st.radio("Conversation Stage", ["1. Intro & Filter", "2. The Value Hook", "3. The Closing/Next Step"])
-
-if step == "1. Intro & Filter":
-    st.markdown("### Stage 1: The Opener (10 Seconds)")
+# Step-by-Step Logic
+# 1. First Contact (The Qualifier)
+st.markdown("<h3 class='header-text'>Step 1: The Qualifier (Is he independent?)</h3>", unsafe_allow_html=True)
+with st.container():
     st.markdown("""
     <div class='script-box'>
-    <b>[You]:</b> 'Good morning! This is Ahsan, I’m a professional dispatcher. I’ll keep this quick—are you running your own authority right now, or are you leased on?'
-    </div>
-    """, unsafe_allow_html=True)
-    st.info("If they say 'Leased' -> 'No problem, have a good one!' (Hang up)")
-    st.info("If they say 'My own authority' -> Proceed to Step 2.")
-
-elif step == "2. The Value Hook":
-    st.markdown("### Stage 2: The Value (20 Seconds)")
-    st.markdown("""
-    <div class='script-box'>
-    <b>[You]:</b> 'Got it. I specialize in booking premium lanes for independent carriers. I’m not looking for a contract today—I just want to prove I can get you better rates than you're currently seeing on the boards. What kind of equipment are you running today?'
-    </div>
-    """, unsafe_allow_html=True)
-    st.warning("Keep it brief. Let them talk about their truck/location.")
-
-elif step == "3. The Closing/Next Step":
-    st.markdown("### Stage 3: The Call to Action (15 Seconds)")
-    st.markdown("""
-    <div class='script-box'>
-    <b>[You]:</b> 'That’s a good lane. Look, let’s do a two-load trial. No commitment. If I can't beat your current profit margin, we don't work together—simple as that. Does that sound fair?'
-    
-    <b>[If YES]:</b> 'Perfect. What’s your MC number so I can check your setup, and what’s the best email to send over the packet?'
+    <b>[You]:</b> "Good morning! This is Ahsan. I’m calling to see if you’re running your own authority right now, or are you leased onto another company?"
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-st.caption("Pro Tip: If they sound busy, ask: 'Do you have 30 seconds for a quick pitch, or should I call you back at a better time?'")
+
+# 2. If Independent (The Pitch)
+st.markdown("<h3 class='header-text'>Step 2: The Value Hook (Only if Independent)</h3>", unsafe_allow_html=True)
+with st.container():
+    st.markdown("""
+    <div class='script-box'>
+    <b>[You]:</b> "Great. Look, I’m not looking to waste your time with a contract. I’m a dedicated dispatcher, and I’m just looking to add a reliable truck to my network. If I can book you a load that pays better than what you’re seeing on the boards right now, would you be open to giving me a shot?"
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("---")
+
+# 3. The Close (The "Trial" Deal)
+st.markdown("<h3 class='header-text'>Step 3: The Close (Action)</h3>", unsafe_allow_html=True)
+with st.container():
+    st.markdown("""
+    <div class='script-box'>
+    <b>[You]:</b> "Fair enough. Let's do a two-load trial—zero commitment. If I don't beat your current profit, we don't work together. What’s your MC number, and let’s see what I can get you for tomorrow?"
+    </div>
+    """, unsafe_allow_html=True)
+
+st.sidebar.success("💡 Keep it calm. Don't rush. You are a business partner, not a salesman.")
