@@ -12,6 +12,7 @@ st.markdown("""
     .you-box { background-color: #e3f2fd; color: #0d47a1; border-left: 10px solid #1976d2; }
     .carrier-box { background-color: #ffebee; color: #b71c1c; border-left: 10px solid #d32f2f; }
     .emergency-box { background-color: #fff3e0; color: #e65100; border-left: 10px solid #ef6c00; }
+    .closing-box { background-color: #e8f5e9; color: #1b5e20; border-left: 10px solid #2e7d32; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -73,12 +74,12 @@ deep_engagement_scenarios = {
 }
 
 # 1. Opening Line
-st.subheader("Start with this:")
+st.subheader("1️⃣ Start with this:")
 st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks looking for loads today?</div>', unsafe_allow_html=True)
 
 # 2. Dropdown for Quick Carrier Responses
 st.markdown("---")
-st.subheader("⚡ Quick Responses (Busy or Short Answers)")
+st.subheader("2️⃣ ⚡ Quick Responses (Busy or Short Answers)")
 choice = st.selectbox("Select the common scenario:", [""] + list(scenarios.keys()))
 
 if choice:
@@ -93,7 +94,7 @@ if choice:
 
 # 3. Dropdown for Deep Engagement
 st.markdown("---")
-st.subheader("🤝 Deep Engagement (Detailed questions)")
+st.subheader("3️⃣ 🤝 Deep Engagement (Detailed questions)")
 deep_choice = st.selectbox("Select the detailed question:", [""] + list(deep_engagement_scenarios.keys()))
 
 if deep_choice:
@@ -106,13 +107,21 @@ if deep_choice:
             audio_bytes = asyncio.run(generate_male_audio(deep_response_text))
             st.audio(audio_bytes, format='audio/mp3')
 
-# 4. EMERGENCY ROUTE (If you don't know the answer)
+# 4. EMERGENCY ROUTE 
 st.markdown("---")
-st.subheader("🚨 Emergency (If they ask something you don't know)")
+st.subheader("4️⃣ 🚨 Emergency (If they ask a question you don't know)")
 emergency_text = "Good question. Let me check my system. I will put the exact details in the email I am sending you right now."
 st.markdown(f'<div class="chat-box emergency-box"><b>Your Escape Reply:</b> {emergency_text}</div>', unsafe_allow_html=True)
 
-if st.button("Listen to Emergency Response"):
+# 5. HOW TO END THE CALL (Since you already have the email)
+st.markdown("---")
+st.subheader("5️⃣ ✅ How to End the Call (Confirming their Email)")
+closing_text = "I have your email as [Read Their Email], is that correct? ... Perfect. I am sending the details right now. Thank you for your time, stay safe!"
+st.markdown(f'<div class="chat-box closing-box"><b>Your Final Words before hanging up:</b><br>{closing_text}</div>', unsafe_allow_html=True)
+
+if st.button("Listen to Call Ending"):
     with st.spinner("Generating audio..."):
-        audio_bytes = asyncio.run(generate_male_audio(emergency_text))
+        # Removing the brackets for text-to-speech to sound natural
+        tts_text = "I have your email as John at gmail dot com, is that correct? Perfect. I am sending the details right now. Thank you for your time, stay safe!"
+        audio_bytes = asyncio.run(generate_male_audio(tts_text))
         st.audio(audio_bytes, format='audio/mp3')
