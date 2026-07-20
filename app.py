@@ -1,60 +1,47 @@
 import streamlit as st
 
-# 1. Page Configuration
-st.set_page_config(page_title="Ahsan Khan | Dispatch Pro", page_icon="🚛", layout="wide")
+# Page Config
+st.set_page_config(page_title="Dispatch Pro", layout="centered")
 
-# Custom CSS for a professional, distraction-free UI
 st.markdown("""
     <style>
-    .main-title { font-size: 28px; font-weight: bold; color: #1E3A8A; text-align: center; margin-bottom: 20px; }
-    .stButton>button { width: 100%; border-radius: 5px; height: 3em; background-color: #1E40AF; color: white; }
-    .script-box { background-color: #F1F5F9; padding: 20px; border-radius: 10px; border-left: 5px solid #1E40AF; font-size: 16px; }
+    .script-box { background-color: #f0f2f6; padding: 20px; border-radius: 10px; font-size: 18px; border-left: 5px solid #0047AB; }
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='main-title'>🚛 Professional Carrier Acquisition Suite</div>", unsafe_allow_html=True)
+st.title("📞 Fast-Track Dispatcher Script")
 
-# 2. The 15-Second Qualifier (Always visible at the top)
-st.subheader("🎯 Step 1: Initial Qualifier")
-with st.expander("Click to view Qualifier Script", expanded=True):
+# Step-by-Step UI
+step = st.radio("Conversation Stage", ["1. Intro & Filter", "2. The Value Hook", "3. The Closing/Next Step"])
+
+if step == "1. Intro & Filter":
+    st.markdown("### Stage 1: The Opener (10 Seconds)")
     st.markdown("""
-    **[You]:** 'Hi, is this [Carrier Name]? This is Ahsan, I’ll keep this very brief. Are you currently running your trucks under your own authority, or are you leased onto another company?'
+    <div class='script-box'>
+    <b>[You]:</b> 'Good morning! This is Ahsan, I’m a professional dispatcher. I’ll keep this quick—are you running your own authority right now, or are you leased on?'
+    </div>
+    """, unsafe_allow_html=True)
+    st.info("If they say 'Leased' -> 'No problem, have a good one!' (Hang up)")
+    st.info("If they say 'My own authority' -> Proceed to Step 2.")
+
+elif step == "2. The Value Hook":
+    st.markdown("### Stage 2: The Value (20 Seconds)")
+    st.markdown("""
+    <div class='script-box'>
+    <b>[You]:</b> 'Got it. I specialize in booking premium lanes for independent carriers. I’m not looking for a contract today—I just want to prove I can get you better rates than you're currently seeing on the boards. What kind of equipment are you running today?'
+    </div>
+    """, unsafe_allow_html=True)
+    st.warning("Keep it brief. Let them talk about their truck/location.")
+
+elif step == "3. The Closing/Next Step":
+    st.markdown("### Stage 3: The Call to Action (15 Seconds)")
+    st.markdown("""
+    <div class='script-box'>
+    <b>[You]:</b> 'That’s a good lane. Look, let’s do a two-load trial. No commitment. If I can't beat your current profit margin, we don't work together—simple as that. Does that sound fair?'
     
-    *   **If Leased:** 'Understood, I appreciate your time. We only partner with independent carriers. Stay safe out there!'
-    *   **If Independent:** 'Great—are you looking to improve your rate-per-mile or just looking for back-office support right now?'
-    """)
+    <b>[If YES]:</b> 'Perfect. What’s your MC number so I can check your setup, and what’s the best email to send over the packet?'
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
-
-# 3. Sequencing the Pitch (Using Tabs to keep it clean)
-st.subheader("🎛️ Step 2: Pitch Strategy")
-tab1, tab2, tab3 = st.tabs(["💰 Market Rates & Lane Optimizer", "👔 Back-Office Efficiency", "🤝 Relationship Builder (Long-Term)"])
-
-with tab1:
-    st.markdown("### Focus: Increasing Net Revenue")
-    st.markdown("""
-    **[You]:** 'I’ve been tracking the lanes in your region. The current spot market is tight, but I’ve built a network that secures premium freight before it hits public boards. If I could get you a consistent 15-20% higher rate-per-mile on your Dry Van, would you be open to a 2-load trial?'
-    """)
-
-with tab2:
-    st.markdown("### Focus: Time & Operational Relief")
-    st.markdown("""
-    **[You]:** 'I know how draining it is to drive 11 hours and then spend your nights fighting with brokers and chasing detention pay. I want to handle all that paperwork—setup packets, credit checks, and invoices—so you can just focus on driving and making money. Does that sound like the kind of help you need?'
-    """)
-
-with tab3:
-    st.markdown("### Focus: The Professional Partnership (High-Trust)")
-    st.markdown("""
-    **[You]:** 'Look, there are a thousand dispatchers calling you today, and I know trust is hard to come by over the phone. I’m not looking to just book one load. I’m looking to become your dedicated back-office partner. I’d like to prove my value by booking your next two loads exactly where you want to go. If I don't beat your current profit margin, we go our separate ways—no hard feelings. What’s your MC number so I can check your setup?'
-    """)
-
-# 4. Closing the Deal (Next Steps)
-st.markdown("---")
-st.subheader("🚀 Step 3: Closing & Onboarding")
-if st.button("Generate Closing Sequence"):
-    st.success("""
-    **[Closing Protocol]:**
-    1. **Verify:** 'I’ve got your MC number. I’m going to run a quick setup check.'
-    2. **Agreement:** 'I’ll send over our simple service agreement via DocuSign to your email. No long-term commitments.'
-    3. **Action:** 'What is the best email to reach you at? I'll send that over now, and let's get you loaded for tomorrow morning.'
-    """)
+st.caption("Pro Tip: If they sound busy, ask: 'Do you have 30 seconds for a quick pitch, or should I call you back at a better time?'")
