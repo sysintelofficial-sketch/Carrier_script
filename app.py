@@ -71,9 +71,9 @@ deep_engagement_scenarios = {
     }
 }
 
-# 1. Opening Line
+# 1. Opening Line (Updated with "loads" instead of "freight support")
 st.subheader("Start with this:")
-st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks that need freight support today?</div>', unsafe_allow_html=True)
+st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks looking for loads today?</div>', unsafe_allow_html=True)
 
 # 2. Dropdown for Quick Carrier Responses
 st.markdown("---")
