@@ -1,38 +1,33 @@
 import streamlit as st
 
-st.set_page_config(page_title="Carrier Pitch", layout="centered")
+st.set_page_config(page_title="Professional Dispatch Call", layout="centered")
 
 st.markdown("""
     <style>
-    .script-box { background-color: #f8f9fa; padding: 20px; border-radius: 12px; 
-                  border-left: 6px solid #2563eb; font-size: 20px; color: #1e293b; }
+    .chat-box { background-color: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #d1d5db; margin-bottom: 10px; }
+    .you { color: #1e40af; font-weight: bold; }
+    .carrier { color: #dc2626; font-weight: bold; }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🚛 Dispatcher Talk")
+st.title("📞 Direct Professional Script")
 
-# 1. Quick Intro & Qualification
-st.subheader("Step 1: The Intro")
 st.markdown("""
-<div class='script-box'>
-<b>[You]:</b> "Hi [Carrier Name], this is Ahsan. I’m a local dispatcher. I’m just calling to see if you’re running under your own authority or leased onto a company?"
+<div class='chat-box'>
+    <p><span class='you'>[You]:</span> Good morning, [Carrier Name]. This is Ahsan. I’m looking at your carrier profile and see you’re running [Equipment Type]. I’m calling to see if you have capacity for a few high-paying lanes this week?</p>
+    
+    <p><span class='carrier'>[Carrier]:</span> We’re currently booked, but we’re always looking for better rates. Who are you with?</p>
+    
+    <p><span class='you'>[You]:</span> I’m an independent dispatcher. I don’t use public boards—I have direct access to private lanes that pay 15% above market average. I’m not asking for a commitment, just a chance to prove the numbers.</p>
+    
+    <p><span class='carrier'>[Carrier]:</span> Okay, what kind of rates are you talking about for a Dry Van out of Atlanta?</p>
+    
+    <p><span class='you'>[You]:</span> For that lane, I’m locking in $X per mile consistently. If I can match or beat that today, would you be open to sending me your setup packet?</p>
+    
+    <p><span class='carrier'>[Carrier]:</span> Send me an email with your details and I’ll take a look.</p>
+    
+    <p><span class='you'>[You]:</span> Perfect. I’ll send that right now. I’ll keep an eye out for your reply and follow up shortly.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# 2. The Hook (Value Addition)
-st.subheader("Step 2: The Pitch")
-st.markdown("""
-<div class='script-box'>
-<b>[You]:</b> "Got it. Look, I’m trying to build a small network of reliable carriers. I’m not asking for a contract—I just want to prove I can find you better-paying loads than what's on the board. Do you have a truck available, and would you be open to trying a couple of loads with me?"
-</div>
-""", unsafe_allow_html=True)
-
-# 3. Closing (The Call to Action)
-st.subheader("Step 3: The Next Step")
-st.markdown("""
-<div class='script-box'>
-<b>[You]:</b> "Great. Let’s do a quick trial. What’s your MC number so I can check your setup, and what’s the best email to send the details over?"
-</div>
-""", unsafe_allow_html=True)
-
-st.info("نکۃ: اگر وہ کہیں 'ہمیں ضرورت نہیں'، تو بس کہیں: 'کوئی بات نہیں، میں آپ کا نمبر سیو کر لیتا ہوں، شاید مستقبل میں کبھی ضرورت پڑے۔ اپنا خیال رکھیں، خدا حافظ۔'")
+st.success("💡 Tip: اس میں آپ نے شروع میں ہی بتا دیا کہ آپ کو ان کے ڈیٹا کا پتہ ہے، اس لیے وہ آپ کو سنجیدگی سے لیں گے۔")
