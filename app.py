@@ -2,22 +2,20 @@ import streamlit as st
 import asyncio
 import edge_tts
 
-# 1. Page Setup
-st.set_page_config(page_title="Smart Carrier Pitch Trainer", layout="wide")
+# Page Setup
+st.set_page_config(page_title="Smart Carrier Trainer", layout="wide")
 
-# 2. Custom CSS
+# CSS for large, clear fonts and easy-to-read boxes
 st.markdown("""
     <style>
-    .chat-box { padding: 20px; border-radius: 12px; font-size: 20px !important; line-height: 1.6; margin-bottom: 15px; }
-    .you-box { background-color: #e3f2fd; color: #0d47a1; border-left: 8px solid #1976d2; }
-    .carrier-box { background-color: #ffebee; color: #b71c1c; border-left: 8px solid #d32f2f; }
-    .highlight { font-weight: bold; color: #2e7d32; }
+    .chat-box { padding: 25px; border-radius: 15px; font-size: 24px !important; line-height: 1.8; margin-bottom: 20px; }
+    .you-box { background-color: #e3f2fd; color: #0d47a1; border-left: 10px solid #1976d2; }
+    .carrier-box { background-color: #ffebee; color: #b71c1c; border-left: 10px solid #d32f2f; }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📞 Smart Carrier Pitch: The Email Pivot Trainer")
+st.title("📞 Smooth & Professional Carrier Pitch Trainer")
 
-# Async function for Audio
 async def generate_male_audio(text):
     communicate = edge_tts.Communicate(text, "en-US-GuyNeural")
     audio_data = bytearray()
@@ -26,43 +24,42 @@ async def generate_male_audio(text):
             audio_data.extend(chunk["data"])
     return bytes(audio_data)
 
-# --- THE SMART SCENARIOS ---
+# --- REVISED SCENARIOS (No Short Words, Clear Flow) ---
 scenarios = {
-    "I'm driving / I'm busy": {
-        "reply": "I totally understand, stay safe. I'll be quick—I have some private lanes with great rates. Mind if I email you my info as a backup for when things open up?"
+    "I am driving / I am busy": {
+        "reply": "I totally understand. Please stay safe. I will be very quick. I work with private lanes that pay above average. May I send my information to your email so you have it as a backup for later?"
     },
     "What is this about?": {
-        "reply": "I work with private lanes that pay above-average. I'm just looking to be a reliable backup option for you. Can I send my details to your email?"
+        "reply": "I work with private lanes that pay above average. I am just reaching out to be a reliable backup option for you. May I send my details to your email?"
     },
-    "We don't need help right now": {
-        "reply": "No worries, I get it. I'm not looking to change your setup today, just want to be an option in your back pocket. Can I send an email so you have my info?"
+    "We do not need help right now": {
+        "reply": "No problem at all, I completely understand. I just want to be an option in your back pocket. May I send you an email so you have my information for a future need?"
     },
     "We have our own brokers": {
-        "reply": "That's great, I'm glad you have good partners. I'm just reaching out to be an alternative if they ever drop the ball. Mind if I send you a quick email?"
+        "reply": "That is great to hear. I am just reaching out to be an alternative if they ever do not have a load for you. May I send you a quick email?"
     },
-    "Who are you / Where are you from?": {
-        "reply": "I'm Ahsan, an independent logistics partner. I work with specific lanes that pay well. I'd love to email you my details so you can see if we're a match."
+    "Who are you?": {
+        "reply": "I am Ahsan, an independent logistics partner. I work with specific lanes that pay well. I would like to email my details to you so you can see if we are a good match."
     },
     "Just send me an email": {
-        "reply": "Perfect, I'll get that over right now. Appreciate your time, stay safe out there!"
+        "reply": "That is perfect. I will send that right now. Thank you for your time and stay safe out there."
     }
 }
 
 # 1. Opening Line
 st.subheader("Start with this:")
-st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I’m reaching out to see if you have any open trucks that need freight support today?</div>', unsafe_allow_html=True)
+st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I am reaching out to see if you have any open trucks that need freight support today?</div>', unsafe_allow_html=True)
 
 # 2. Dropdown for Carrier Response
 st.subheader("Select what the Carrier says:")
-choice = st.selectbox("Choose the objection:", list(scenarios.keys()))
+choice = st.selectbox("Select the scenario:", list(scenarios.keys()))
 
-# 3. Dynamic Response based on choice
+# 3. Dynamic Response
 if choice:
     response_text = scenarios[choice]["reply"]
-    
     st.markdown("---")
-    st.markdown(f'<div class="chat-box carrier-box"><b>Carrier:</b> {choice}</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="chat-box you-box"><b>Your Pivot to Email:</b> {response_text}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="chat-box carrier-box"><b>Carrier says:</b> {choice}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="chat-box you-box"><b>Your Reply:</b> {response_text}</div>', unsafe_allow_html=True)
     
     if st.button("Listen to your response"):
         with st.spinner("Generating audio..."):
