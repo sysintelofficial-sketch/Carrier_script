@@ -1,49 +1,38 @@
 import streamlit as st
 
-# Page Configuration
-st.set_page_config(page_title="Dispatch Pro", layout="centered")
+st.set_page_config(page_title="Carrier Pitch", layout="centered")
 
-# Custom Styling
 st.markdown("""
     <style>
-    .script-box { background-color: #ffffff; padding: 20px; border-radius: 10px; 
-                  border: 2px solid #1E40AF; font-size: 18px; color: #1E293B; }
-    .header-text { color: #1E40AF; font-weight: bold; }
+    .script-box { background-color: #f8f9fa; padding: 20px; border-radius: 12px; 
+                  border-left: 6px solid #2563eb; font-size: 20px; color: #1e293b; }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🚛 Dispatcher Quick-Pitch")
+st.title("🚛 Dispatcher Talk")
 
-# Step-by-Step Logic
-# 1. First Contact (The Qualifier)
-st.markdown("<h3 class='header-text'>Step 1: The Qualifier (Is he independent?)</h3>", unsafe_allow_html=True)
-with st.container():
-    st.markdown("""
-    <div class='script-box'>
-    <b>[You]:</b> "Good morning! This is Ahsan. I’m calling to see if you’re running your own authority right now, or are you leased onto another company?"
-    </div>
-    """, unsafe_allow_html=True)
+# 1. Quick Intro & Qualification
+st.subheader("Step 1: The Intro")
+st.markdown("""
+<div class='script-box'>
+<b>[You]:</b> "Hi [Carrier Name], this is Ahsan. I’m a local dispatcher. I’m just calling to see if you’re running under your own authority or leased onto a company?"
+</div>
+""", unsafe_allow_html=True)
 
-st.markdown("---")
+# 2. The Hook (Value Addition)
+st.subheader("Step 2: The Pitch")
+st.markdown("""
+<div class='script-box'>
+<b>[You]:</b> "Got it. Look, I’m trying to build a small network of reliable carriers. I’m not asking for a contract—I just want to prove I can find you better-paying loads than what's on the board. Do you have a truck available, and would you be open to trying a couple of loads with me?"
+</div>
+""", unsafe_allow_html=True)
 
-# 2. If Independent (The Pitch)
-st.markdown("<h3 class='header-text'>Step 2: The Value Hook (Only if Independent)</h3>", unsafe_allow_html=True)
-with st.container():
-    st.markdown("""
-    <div class='script-box'>
-    <b>[You]:</b> "Great. Look, I’m not looking to waste your time with a contract. I’m a dedicated dispatcher, and I’m just looking to add a reliable truck to my network. If I can book you a load that pays better than what you’re seeing on the boards right now, would you be open to giving me a shot?"
-    </div>
-    """, unsafe_allow_html=True)
+# 3. Closing (The Call to Action)
+st.subheader("Step 3: The Next Step")
+st.markdown("""
+<div class='script-box'>
+<b>[You]:</b> "Great. Let’s do a quick trial. What’s your MC number so I can check your setup, and what’s the best email to send the details over?"
+</div>
+""", unsafe_allow_html=True)
 
-st.markdown("---")
-
-# 3. The Close (The "Trial" Deal)
-st.markdown("<h3 class='header-text'>Step 3: The Close (Action)</h3>", unsafe_allow_html=True)
-with st.container():
-    st.markdown("""
-    <div class='script-box'>
-    <b>[You]:</b> "Fair enough. Let's do a two-load trial—zero commitment. If I don't beat your current profit, we don't work together. What’s your MC number, and let’s see what I can get you for tomorrow?"
-    </div>
-    """, unsafe_allow_html=True)
-
-st.sidebar.success("💡 Keep it calm. Don't rush. You are a business partner, not a salesman.")
+st.info("نکۃ: اگر وہ کہیں 'ہمیں ضرورت نہیں'، تو بس کہیں: 'کوئی بات نہیں، میں آپ کا نمبر سیو کر لیتا ہوں، شاید مستقبل میں کبھی ضرورت پڑے۔ اپنا خیال رکھیں، خدا حافظ۔'")
