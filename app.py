@@ -3,18 +3,19 @@ import asyncio
 import edge_tts
 
 # 1. Page Setup
-st.set_page_config(page_title="Smart Carrier Trainer", layout="wide")
+st.set_page_config(page_title="Smart Carrier Pitch Trainer", layout="wide")
 
 # 2. Custom CSS
 st.markdown("""
     <style>
-    .chat-box { padding: 20px; border-radius: 12px; font-size: 22px !important; line-height: 1.6; margin-bottom: 15px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+    .chat-box { padding: 20px; border-radius: 12px; font-size: 20px !important; line-height: 1.6; margin-bottom: 15px; }
     .you-box { background-color: #e3f2fd; color: #0d47a1; border-left: 8px solid #1976d2; }
     .carrier-box { background-color: #ffebee; color: #b71c1c; border-left: 8px solid #d32f2f; }
+    .highlight { font-weight: bold; color: #2e7d32; }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📞 Smart Carrier Pitch Trainer")
+st.title("📞 Smart Carrier Pitch: The Email Pivot Trainer")
 
 # Async function for Audio
 async def generate_male_audio(text):
@@ -25,41 +26,45 @@ async def generate_male_audio(text):
             audio_data.extend(chunk["data"])
     return bytes(audio_data)
 
-# --- THE LOGIC ---
-# Define the scenarios
+# --- THE SMART SCENARIOS ---
 scenarios = {
-    "I'm busy / driving right now": {
-        "reply": "I completely understand. I’ll keep it brief—I work with private lanes in your area that pay above average. Can I just email my info so you have me as a backup for when you're free?"
+    "I'm driving / I'm busy": {
+        "reply": "I totally understand, stay safe. I'll be quick—I have some private lanes with great rates. Mind if I email you my info as a backup for when things open up?"
     },
     "What is this about?": {
-        "reply": "I work with private lanes that pay above average. I'm just reaching out to see if I can be a backup contact for you when your usual lanes are slow. Should I send my info over?"
+        "reply": "I work with private lanes that pay above-average. I'm just looking to be a reliable backup option for you. Can I send my details to your email?"
     },
     "We don't need help right now": {
-        "reply": "No problem at all, I totally get it. I'm just trying to build my contact list for the future. May I send you a quick email so you have my info for a rainy day?"
+        "reply": "No worries, I get it. I'm not looking to change your setup today, just want to be an option in your back pocket. Can I send an email so you have my info?"
+    },
+    "We have our own brokers": {
+        "reply": "That's great, I'm glad you have good partners. I'm just reaching out to be an alternative if they ever drop the ball. Mind if I send you a quick email?"
+    },
+    "Who are you / Where are you from?": {
+        "reply": "I'm Ahsan, an independent logistics partner. I work with specific lanes that pay well. I'd love to email you my details so you can see if we're a match."
     },
     "Just send me an email": {
-        "reply": "Perfect, I'll send that right now! Have a great day and stay safe out there!"
+        "reply": "Perfect, I'll get that over right now. Appreciate your time, stay safe out there!"
     }
 }
 
 # 1. Opening Line
+st.subheader("Start with this:")
 st.markdown('<div class="chat-box you-box"><b>You:</b> Hi, this is Ahsan. I’m reaching out to see if you have any open trucks that need freight support today?</div>', unsafe_allow_html=True)
 
 # 2. Dropdown for Carrier Response
-choice = st.selectbox("Select how the Carrier responds:", list(scenarios.keys()))
+st.subheader("Select what the Carrier says:")
+choice = st.selectbox("Choose the objection:", list(scenarios.keys()))
 
 # 3. Dynamic Response based on choice
 if choice:
     response_text = scenarios[choice]["reply"]
     
-    # Display Carrier's simulated choice
+    st.markdown("---")
     st.markdown(f'<div class="chat-box carrier-box"><b>Carrier:</b> {choice}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="chat-box you-box"><b>Your Pivot to Email:</b> {response_text}</div>', unsafe_allow_html=True)
     
-    # Display your response
-    st.markdown(f'<div class="chat-box you-box"><b>Your Reply:</b> {response_text}</div>', unsafe_allow_html=True)
-    
-    # Generate and Play Audio
-    if st.button("Listen to your reply"):
+    if st.button("Listen to your response"):
         with st.spinner("Generating audio..."):
             audio_bytes = asyncio.run(generate_male_audio(response_text))
             st.audio(audio_bytes, format='audio/mp3')
