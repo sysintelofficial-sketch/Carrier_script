@@ -1,9 +1,8 @@
 import streamlit as st
 import asyncio
 import edge_tts
-import io
 
-# 1. Page Setup - "wide" layout for full screen spread
+# 1. Page Setup - "wide" layout for full-screen spread
 st.set_page_config(page_title="Carrier Pitch Trainer", layout="wide")
 
 # 2. Custom CSS for 100% Zoom and Large Fonts
@@ -25,8 +24,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 3. Header Section
-st.title("📞 Live Call Script & Audio Practice (Male Voice)")
-st.info("💡 मेल (Male) अमेरिकन वॉइस में सुनने और प्रैक्टिस करने के लिए प्ले (Play) बटन पर क्लिक करें।")
+st.title("📞 Live Call Script & Audio Practice")
+st.info("💡 Click the Play button next to your lines to hear the correct American male pronunciation, then practice speaking.")
 
 # Async function to generate male voice using Edge TTS
 async def generate_male_audio(text):
@@ -49,7 +48,7 @@ dialogue = [
 
 # 5. Display Loop
 for line in dialogue:
-    # Creating a wide layout with columns (Text on left, Audio on right)
+    # Creating a wide layout with columns (Text on the left, Audio on the right)
     col1, col2 = st.columns([0.85, 0.15])
     
     with col1:
@@ -69,4 +68,4 @@ for line in dialogue:
             st.write("<br>", unsafe_allow_html=True) 
             st.audio(audio_bytes, format='audio/mp3')
         else:
-            st.write("") # Empty space for Carrier side
+            st.write("") # Empty space for the Carrier side
