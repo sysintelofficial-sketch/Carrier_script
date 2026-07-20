@@ -24,51 +24,50 @@ async def generate_male_audio(text):
             audio_data.extend(chunk["data"])
     return bytes(audio_data)
 
-# --- REVISED SCENARIOS (No Short Words, Clear Flow) ---
+# --- QUICK RESPONSES (Short & Punchy for live calls) ---
 scenarios = {
     "I am driving / I am busy": {
-        "reply": "I totally understand. Please stay safe. I will be very quick. I work with private lanes that pay above average. May I send my information to your email so you have it as a backup for later?"
+        "reply": "I understand. Stay safe. I have well-paying private lanes. May I email my info as a backup?"
     },
     "What is this about?": {
-        "reply": "I work with private lanes that pay above average. I am just reaching out to be a reliable backup option for you. May I send my details to your email?"
+        "reply": "I work with private lanes that pay above average. I want to be a backup for you. May I email my details?"
     },
     "We do not need help right now": {
-        "reply": "No problem at all, I completely understand. I just want to be an option in your back pocket. May I send you an email so you have my information for a future need?"
+        "reply": "No problem at all. I just want to be an option in your back pocket. May I email my info?"
     },
     "We have our own brokers": {
-        "reply": "That is great to hear. I am just reaching out to be an alternative if they ever do not have a load for you. May I send you a quick email?"
+        "reply": "That is great. I am just reaching out to be an alternative option. May I send a quick email?"
     },
     "Who are you?": {
-        "reply": "I am Ahsan, an independent logistics partner. I work with specific lanes that pay well. I would like to email my details to you so you can see if we are a good match."
+        "reply": "I am Ahsan, an independent logistics partner. I have specific lanes that pay well. May I email you my details?"
     },
     "Just send me an email": {
-        "reply": "That is perfect. I will send that right now. Thank you for your time and stay safe out there."
+        "reply": "Perfect. I will send it right now. Thank you for your time."
     },
-    # --- 4 NEW COMMON SCENARIOS ---
     "How did you get my number?": {
-        "reply": "I found your information on the public FMCSA registry. I noticed your safety record is strong, and I am looking for reliable carriers to partner with on future freight."
+        "reply": "From the public FMCSA registry. You have a strong safety record, so I reached out."
     },
     "What kind of freight do you have?": {
-        "reply": "We focus on dry van and reefer loads, mostly regional and over-the-road routes. I can send a list of our active lanes to your email if you are interested."
+        "reply": "Mostly dry van and reefer on regional routes. May I email you our active list?"
     },
     "We are covered for the week": {
-        "reply": "That is excellent. I do not want to interrupt your current schedule. I will just send a short email with my contact details so you have a reliable backup for next week."
+        "reply": "Excellent. I will just email my contact details so you have a backup for next week."
     },
     "What are your rates like?": {
-        "reply": "Our rates depend on the specific lane and market conditions, but we always aim to pay above the market average to keep good carriers moving. May I email you some recent examples?"
+        "reply": "We pay above market average to keep good trucks moving. May I email you some examples?"
     }
 }
 
-# --- NEW DEEP ENGAGEMENT SCENARIOS ---
+# --- DEEP ENGAGEMENT (Short but impactful) ---
 deep_engagement_scenarios = {
-    "Why should I work with you instead of a big broker?": {
-        "reply": "Because I offer direct communication and full transparency. When you call, you speak directly with me. I focus on building long-term partnerships rather than just covering a single load."
+    "Why work with you instead of a big broker?": {
+        "reply": "Big brokers keep large margins. I operate independently, so my margins are low, and more money goes to your truck."
     },
     "How do you pay your carriers?": {
-        "reply": "We process payments quickly because we know cash flow is important for your trucks. Standard pay is thirty days, but we also offer quick pay options. I will send the full payment details to your email."
+        "reply": "Standard pay is thirty days, but we offer quick pay too. Cash flow is important. I will email the details."
     },
-    "How does your onboarding process work?": {
-        "reply": "It is very simple. I will send you an email with a secure link. You just upload your insurance and authority documents. Once approved, we can start moving freight together immediately."
+    "How does your onboarding work?": {
+        "reply": "Very simple. I send a secure link, you upload your documents, and we are ready to go."
     }
 }
 
@@ -94,8 +93,7 @@ if choice:
 
 # 3. Dropdown for Deep Engagement (When Carrier wants to talk)
 st.markdown("---")
-st.subheader("🤝 Deep Engagement (Carrier wants more details)")
-st.info("Use these answers when the carrier has time and is asking detailed questions to build trust.")
+st.subheader("🤝 Deep Engagement (Detailed questions)")
 deep_choice = st.selectbox("Select the detailed question:", [""] + list(deep_engagement_scenarios.keys()))
 
 # Dynamic Response for Deep Engagement
