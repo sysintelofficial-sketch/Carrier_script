@@ -7,4 +7,5 @@ fpdf>=1.7.2
 matplotlib>=3.7.0
 requests>=2.28.0
 gtts
+edge-tts
 pulp>=2.8.0
